@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}News247 | Trending News{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <h5>Lovable News</h5>
+            </div>
+            <div></div>
+            <div></div>
+        </nav>
+    </header>
+    {% block body %}
+    {% endblock body %}
+    <script src=""></script>
+</body>
+</html>
