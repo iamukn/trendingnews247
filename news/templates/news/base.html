@@ -1,24 +1,105 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}News247 | Trending News{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        merriweather: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+             --border: 214 20% 88%;
+            /* Primary - calming blue for trust */
+            --primary: 217 91% 60%;
+            --primary-foreground: 0 0% 100%;
+            /* Secondary - soft neutral tones */
+            --secondary: 214 13% 95%;
+            --secondary-foreground: 215 25% 15%;
+                --muted: 214 13% 95%;
+                    --muted-foreground: 215 16% 47%;
+                        
+                        /* Accent - for highlights */
+                        --accent: 217 91% 60%;
+                            --accent-foreground: 0 0% 100%;
+                                
+                                /* Borders and inputs */
+                                --border: 214 20% 88%;
+                                    --input: 214 20% 88%;
+                                        --ring: 217 91% 60%;
+                                            
+                                            /* Category colors */
+                                            --category-tech: 217 91% 60%;
+                                                --category-health: 142 76% 36%;
+                                                    --category-politics: 262 83% 58%;
+                                                        --category-business: 24 95% 53%;
+                                                            --category-sports: 6 78% 57%;
+                                                                --category-world: 199 89% 48%;
+                                                                    
+                                                                    /* Radius */
+                                                                    --radius: 0.75rem;
+                                                                        
+                                                                        /* Shadows */
+                                                                        --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+                                                                            --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                                                                                
+                                                                                /* Transitions */
+                                                                                --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        }
+
+        .text-primary { color: hsl(var(--primary)); }
+        .bg-primary { background-color: hsl(var(--primary)); }
+        .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+
+        .hover\:bg-primary:hover { background-color: hsl(var(--primary)); }
+
+
+        .bg-secondary { background-color: hsl(var(--secondary)); }
+        .text-secondary { color: hsl(var(--secondary)); }
+        .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+
+    </style>
 </head>
 <body>
     <header>
-        <nav>
-            <div>
-                <h5>Lovable News</h5>
+        <nav class="flex justify-between border-b sticky top-0 border-border px-4 py-7">
+            <div class='flex gap-1'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-newspaper h-6 w-6 text-primary transition-transform group-hover:scale-110"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg>
+                <h5 class="text-xl font-heading font-bold font-merriweather">News247</h5>
             </div>
             <div></div>
-            <div></div>
+            <div class=''>
+                <ul class='flex gap-5'>
+                    <li class="font-body font-medium transition-colors text-primary">Home</li>
+                    <li class="font-body font-medium transition-colors text-primary">Categories</li>
+                    <li class="font-body font-medium transition-colors text-primary">About</li>
+                </ul>
+            </div>
         </nav>
     </header>
     {% block body %}
     {% endblock body %}
+    <footer class="bg-secondary/50 border-t border-border py-12">
+        <div class="flex flex-col justify-center items-center">
+            <div class='flex items-center justify-center mb-4 gap-2'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-6 w-6 text-primary"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                 <h2 class="text-2xl font-heading font-bold text-foreground">Stay Updated</h2>
+            </div>
+            <p class="text-muted-foreground mb-6">Get the latest news delivered to your inbox. Subscribe to our newsletter.</p>
+            <form class="flex gap-3 max-w-md mx-auto"><input type="email" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm flex-1" placeholder="Enter your email" required="" value=""><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" type="submit">Subscribe</button></form>
+        </div>
+    </footer>
     <script src=""></script>
 </body>
 </html>
