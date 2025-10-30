@@ -2,10 +2,11 @@ from os import environ
 import boto3
 from PIL import Image
 from io import BytesIO
+import os
 
-SECRET_ACCESS_KEY = '6dc9ec760fcc353173afd0fbd1816d617af87d39d3d1ea266d01a56a26fdb870'
-ACCESS_KEY_ID = '1edb90b40249172b8fcc11709bd972e5'
-ACCOUNT_ID='bef358e585ef9ba2ea76b368f4ce42f9'
+SECRET_ACCESS_KEY = os.environ.get('SECRET_ACCESS_KEY')
+ACCESS_KEY_ID = os.environ.get('ACCESS_KEY_ID')
+ACCOUNT_ID= os.environ.get('ACCOUNT_ID')
 ENDPOINT_URL=f"https://{ACCOUNT_ID}.r2.cloudflarestorage.com"
 
 
