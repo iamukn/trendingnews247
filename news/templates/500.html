@@ -1,0 +1,195 @@
+{% comment %}
+    This template assumes it either stands alone or extends a very minimal base.
+    If extending a complex 'base.html', you might need to adjust it to ensure
+    all necessary blocks and context are present to avoid a 500 error.
+    
+    A simpler 404.html might look like this:
+    {% extends "base.html" %}
+    {% block content %}
+        {% endblock content %}
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0c1220; /* Dark background for contrast */
+            color: #e0e0e0; /* Light text for readability */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Prevent scroll if background effects are used */
+        }
+
+        /* Container for the 404 content */
+        .error-container {
+            max-width: 600px;
+            padding: 40px;
+            background-color: #1a2333; /* Slightly lighter dark background for the card */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover effect for the container */
+        .error-container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 404 Heading */
+        .error-number {
+            font-size: 8em;
+            font-weight: 800;
+            color: #00b0ff; /* Primary Blue */
+            margin-bottom: 20px;
+            letter-spacing: -5px;
+            position: relative;
+            animation: glitch-effect 1.5s infinite alternate; /* Optional glitch effect */
+            background: linear-gradient(45deg, #00b0ff, #00e0ff, #8a2be2); /* Gradient for a futuristic look */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glitch Keyframes (Optional) */
+        @keyframes glitch-effect {
+            0% {
+                text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+            }
+            25% {
+                text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;
+            }
+            50% {
+                text-shadow: 4px 0 #ff00ff, -4px 0 #00ffff;
+            }
+            75% {
+                text-shadow: -4px 0 #ff00ff, 4px 0 #00ffff;
+            }
+            100% {
+                text-shadow: 0 0 #ff00ff, 0 0 #00ffff;
+            }
+        }
+
+
+        /* Sub-heading */
+        .error-message {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        /* Description text */
+        .error-description {
+            font-size: 1.1em;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Button Container */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00b0ff, #007bff); /* Blue gradient */
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #007bff, #00b0ff);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 176, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #00b0ff; /* Blue text */
+            border: 2px solid #00b0ff; /* Blue border */
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 176, 255, 0.1); /* Light blue hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 176, 255, 0.15);
+        }
+
+        /* Icon styling for buttons */
+        .btn i {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        /* Optional: background subtle glow/particles */
+        .background-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.1;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 50%, #00b0ff 0%, transparent 70%);
+            animation: pulse-glow 10s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.15;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+        }
+
+    </style>
+    </head>
+<body>
+    <div class="background-effect"></div>
+    <div class="error-container">
+        <div class="error-number">500</div>
+        <h1 class="error-message">Internal Server Error</h1>
+        <p class="error-description">
+            We're experiencing a glitch on our server, please try again shortly!
+        </p>
+        <div class="button-group">
+            <a href="{% url 'landing' %}" class="btn btn-primary">
+                Go Home
+            </a>
+        </div>
+    </div>

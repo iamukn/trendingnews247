@@ -1,0 +1,36 @@
+{% extends "news/base.html" %}
+
+{% block title %}
+Admin Login
+{% endblock title %}
+
+{% block body %}    
+    <div class="min-h-screen flex items-center justify-center p-4" style="background: var(--gradient-bg);">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md shadow-[var(--shadow-soft)] border-border/50">
+            <div class="flex flex-col p-6 space-y-2">
+                <h3 class="tracking-tight text-3xl font-bold text-center">Welcome Back</h3>
+                <p class="text-muted-foreground text-center text-base">Enter your credentials to continue</p>
+            </div>
+            <div class="p-6 pt-0">
+                <form class="space-y-5" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="space-y-2">
+                        <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="email">Username</label>
+                        <input type="username" name="username" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="email" placeholder="Enter your username" required="" value="">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="password">Password</label>
+                        <input type="password" name="password" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="password" placeholder="Enter your password" required="" value="">
+                    </div>
+                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-full h-11 mt-6 shadow-sm hover:shadow-md transition-all" type="submit">Sign In</button>
+                </form>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-green-400">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    
+{% endblock body %}

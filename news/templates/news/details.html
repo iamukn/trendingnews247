@@ -1,0 +1,76 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block titleStart %}
+{% endblock titleStart %}
+{% block title %}
+  {{news.header|title}}
+{% endblock title %}
+
+{% block body %}
+<section class="mb-5">
+  <div class='w-full mt-20'>
+    <div class="relative h-[400px] md:h-[500px] overflow-hidden">
+      <img src={{news.image_url}} alt="Tech Giants Unveil Next-Gen Smartphones with Revolutionary Features" class="w-full h-full object-cover">
+    </div>
+    <article class="container mx-auto px-4 py-12 max-w-4xl">
+      <header class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">{{news.header}}</h1>
+        <div class="flex flex-wrap items-center gap-6 text-muted-foreground mb-6">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar h-4 w-4"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+            <time class="text-sm">{{news.date_published}}</time>
+          </div>
+          <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock h-4 w-4"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span class="text-sm">5 min read</span>
+          </div>
+        </div>
+        <div class="flex gap-3 justify-start items-center border border-gray-200 p-5 w-[10rem]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-4 w-4 mr-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+            <img src="{% static 'images/fb.png' %}" alt="Facebook" class="w-5 h-5 cursor-pointer" id="fb">
+            <img src="{% static 'images/whatsapp.png' %}" alt="Facebook" class="w-5 h-5 cursor-pointer" id="whatsapp">
+            <img src="{% static 'images/x.png' %}" alt="Facebook" class="w-5 h-5 cursor-pointer" id="x">
+        </div>
+      </header>
+      <div class="prose prose-lg max-w-none">
+            {% for p in paragraphs %}          
+              <p class="text-xl text-muted-foreground mb-0 leading-relaxed">{{ p }}</p><br>
+            {% endfor %}
+        <section class="border-t border-border py-16 bg-muted/30">
+          <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-heading font-bold text-foreground mb-8">Related Articles</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {% for news_related in related %}
+                {% if not news_related.id == news.id %}
+                  
+                    <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                      <a href="{% url 'details' news_related.slug %}">
+                        <div class="aspect-video overflow-hidden">
+                          <img src={{news_related.image_url}} alt={{news_related.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                          <div class="mb-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news_related.category}}</span>
+                          </div>
+                          <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news_related.header}}</h3>
+                          <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news_related.content}}</p>
+                      </a>
+                      <div class="flex items-center justify-between">
+                        <time class="text-xs text-muted-foreground font-body">{{news_related.date_published}}</time>
+                        <div class="flex items-center gap-1">
+                          <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                          <!-- <button class="share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button> -->
+                        </div>
+                      </div>
+                    </div>
+                    </article>
+                 
+                {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+        </section>
+</section>
+<script>
+</script>
+{% endblock body %}

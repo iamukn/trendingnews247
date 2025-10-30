@@ -1,0 +1,499 @@
+{% extends "news/base.html" %}
+{% block title %}
+Categories
+{% endblock title %}
+
+{% block body %}
+<section class="mb-5">
+  <div class='w-full'>
+    <div class="flex items-center gap-3 mb-8 mt-[7rem] pl-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grid3x3 h-6 w-6 text-primary"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M3 15h18"></path><path d="M9 3v18"></path><path d="M15 3v18"></path></svg><h1 class="text-3xl font-heading font-bold text-foreground">Browse by Category</h1></div>
+      {% if politics %}
+      <div class='flex flex-wrap flex-col'>
+        <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-5">
+          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+          <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=politics">Politics</a></h1>
+        </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+            {% for news in politics %} 
+                <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                  <a href="{% url 'details' news.slug %}">
+                    <div class="aspect-video overflow-hidden">
+                      <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                  <div class="flex items-center justify-between">
+                    <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                    <div class="flex items-center gap-1">
+                      <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                      <!-- <button class="share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button> -->
+                    </div>
+                  </div>
+                </div>
+              </article>
+              
+            {% endfor %}
+          {% endif %}
+    </div>
+          
+      </div>
+
+      <!-- General News Category -->
+      {% if general %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=general">General</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in general %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+      
+            <!-- Sports News Category -->
+      {% if sport %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=sports">Sports</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in sport %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %} 
+
+                  <!-- Health News Category -->
+      {% if health %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=health">Health</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in health %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Security News Category -->
+      {% if security %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=security">Security</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in security %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Economic News Category -->
+      {% if economic %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=economic">Economic</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in economic %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Education News Category -->
+      {% if education %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=education">Education</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in education %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Oil And Gas News Category -->
+      {% if oil_and_gas %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=oil and gas">Oil and Gas</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in oil_and_gas %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div> 
+      {% endif %}
+
+      <!-- Foreign News Category -->
+      {% if foreign %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=foreign">Foreign</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in foreign %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div> 
+      {% endif %}
+
+      <!--Agriculture News Category -->
+      {% if agriculture %}
+        <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=agriculture">Agriculture</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in agriculture %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Judiciary News Category -->
+    {% if judiciary %}
+      <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=judiciary">Judiciary</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in judiciary %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+      </div>
+    {% endif %}
+
+        {% if entertainment %}
+      <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground"><a href="{% url 'category' %}?category=entertainment">Entertainment</a></h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in entertainment %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+      </div>
+    {% endif %}
+
+        {% if religion %}
+      <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground">Religion</h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in religion %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if banking %}
+      <div class='flex flex-wrap flex-col'>
+          <div class="flex items-center gap-3 mb-8 pl-6 mt-3 pt-10">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> -->
+            <h1 class="text-3xl font-heading font-bold text-foreground">Banking</h1>
+          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
+              {% for news in banking %}
+                
+                  <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                    <a href="{% url 'details' news.slug %}">
+                      <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                      </div>
+                      <div class="p-5">
+                      <div class="mb-2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                      </div>
+                      <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                      <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                    </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <button class=" share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+      </div>
+    {% endif %}
+      </div>
+</section>
+{% endblock body %}

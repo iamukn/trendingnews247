@@ -1,0 +1,72 @@
+{% extends "news/base.html" %}
+
+{% block title %}
+  Admin Dashboard
+{% endblock title %}
+
+{% block body %}
+<div class="mb-20"></div>
+<div class="min-h-screen flex items-center justify-center p-4 gap-6" style="background: var(--gradient-bg);">
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-2xl shadow-[var(--shadow-soft)] border-border/50">
+        <div class="flex flex-col p-6 space-y-2">
+            <div class="flex items-center gap-3">
+                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 hover:bg-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left h-4 w-4"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></button>
+                <h3 class="tracking-tight text-3xl font-bold">Submit Your Message</h3>
+            </div>
+            <p class="text-muted-foreground text-base pl-12">Fill in the details below to send your message</p>
+        </div>
+        <div class="p-6 pt-0 pl-14 pr-6">
+            <form class="space-y-6" method="post" action="{% url 'post' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="space-y-2">
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="subject">Subject</label>
+                    <input type="text" name="subject" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="subject" placeholder="Enter subject" required="" value="">
+                </div>
+                <div class="space-y-2">
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="category">Category</label>
+                    <select id="category" name="category" required class="w-full rounded-md border px-3 py-2">
+                        <option value="">-- Select Category --</option>
+                        <option value="politics">Politics</option>
+                        <option value="general">General</option>
+                        <option value="sport">Sport</option>
+                        <option value="health">Health</option>
+                        <option value="security">Security</option>
+                        <option value="economic">Economic</option>
+                        <option value="education">Education</option>
+                        <option value="oil_and_gas">Oil and Gas</option>
+                        <option value="foreign">Foreign</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="judiciary">Judiciary</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="banking">Banking</option>
+                        <option value="religion">Religion</option>
+                    </select>
+
+                </div>
+                <div class="space-y-2">
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="subject">Reporter</label>
+                    <input type="text" name="reporter" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="reporter" placeholder="Enter reporters name" value="">
+                </div>
+                <div class="space-y-2">
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="message_area">Message</label>
+                    <textarea name="message_area" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] resize-none transition-all focus:ring-2 focus:ring-primary/20" id="message" placeholder="Enter your message" required=""></textarea>
+                </div>
+                <div class="space-y-2">
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="date">Date Posted</label>
+                    <input name="date" type="date" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="date" required="" value=""></div>
+                    <div class="space-y-2">
+                        <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="image">Upload Image (JPEG, PNG, JPG Supported)(Optional)</label>
+                        <div class="relative">
+                            <input name="image" type="file" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90" id="image" accept="image/*"></div>
+                        </div>
+                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-full h-11 mt-8 shadow-sm hover:shadow-md transition-all" type="submit">Submit Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-green-400">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+{% endblock body %}

@@ -25,9 +25,7 @@ SECRET_KEY = 'django-insecure-hkji31+@j#k0y5_=4jsjt)fie9d9(sip4-$615-2*%&96ret4r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,8 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dbbackup',
     "news",
 ]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/backups/'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,10 +115,11 @@ USE_I18N = True
 USE_TZ = True
 
 
+STATIC_URL='/static/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

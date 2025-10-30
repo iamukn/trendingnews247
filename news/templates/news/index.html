@@ -1,9 +1,84 @@
 {% extends "news/base.html" %}
+{% load static %}
 
 {% block body %}
 <section>
   <div class='w-full'>
-      <div class='w-[10px] h-[10px] border border-red-200'></div>
+      <div class='flex flex-wrap flex-col'>
+        <div class="flex items-center gap-3 mb-8 pl-6 mt-10 pt-20">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-6 w-6 text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+          <h1 class="text-3xl font-heading font-bold text-foreground">Trending News</h1>
+        </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+            {% for news in latest_news %}
+              
+                <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                  <a href="{% url 'details' news.slug %}">
+                    <div class="aspect-video overflow-hidden">
+                        <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5">
+                    <div class="mb-2">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                    <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                  </a>
+                    <div class="flex items-center justify-between">
+                      <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                      <div class="flex items-center gap-1">
+                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                        <!-- <button class="share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button> -->
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              
+            {% endfor %}
+          </div>
+      </div>
   </div>
 </section>
+<section class="mb-8 mt-5">
+  <div class='w-full'>
+      <div class='flex flex-wrap flex-col'>
+        <div class="flex items-center gap-3 mb-8 pl-6 mt-5">
+            <h1 class="text-3xl font-heading font-bold text-foreground">More News</h1>
+        </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 px-6">
+            {% for news in more_news %}
+              
+                <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
+                <a href="/{{news.slug}}">
+                  <div class="aspect-video overflow-hidden">
+                    <img src={{news.image_url}} alt={{news.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                  </div>
+                  <div class="p-5">
+                    <div class="mb-2">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-body border bg-category-tech/10 text-category-tech border-category-tech/20">{{news.category}}</span>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{{news.header}}</h3>
+                    <p class="text-sm text-muted-foreground font-body mb-3 line-clamp-2">{{news.content}}</p>
+                  </a>
+                    <div class="flex items-center justify-between">
+                    <time class="text-xs text-muted-foreground font-body">{{news.date_published}}</time>
+                    <div class="flex items-center gap-1">
+                      <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7" type="button" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bookmark h-3 w-3"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button> -->
+                      <!-- <button class="share-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-7 w-7 " type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r1:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 h-3 w-3"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg></button> -->
+                    </div>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+    </div>          
+  </div>
+  </div>
+</section>
+<script>
+  const handleCategoryClick = () => {
+    const category = document.getElementById('category');
+    category.style.display = 'none';
+  }
+
+</script>
 {% endblock body %}
