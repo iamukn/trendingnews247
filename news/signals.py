@@ -15,4 +15,5 @@ def run_backup():
     """
     Call Django's 'dbbackup' command or your own custom dump command.
     """
-    call_command('dbbackup')
+    # call_command('dbbackup')
+    ...
