@@ -20,11 +20,11 @@ class Post(View):
             messages.error(request, "You must be logged in to publish a story.")
             return redirect('login')
         
-        header = request.POST.get('subject').title()
+        header = request.POST.get('subject')
         content = request.POST.get('message_area')
         category = request.POST.get('category').capitalize()
         avatar = request.FILES.get('image')
-        author = request.POST.get('reporter')
+        author = request.POST.get('reporter', 'Ukn')
         image_url = ''
         slug = slugify(header)
         date_published = request.POST.get('date')
