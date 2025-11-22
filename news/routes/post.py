@@ -63,7 +63,8 @@ class Post(View):
                 if avatar:
                     image_url = resize_and_upload(avatar.read(),image_key)
         except Exception as e:
-            raise e
+            #print(e)
+            raise(e)
             messages.error(request, f"An error occurred while publishing: {e}")
             return render(request, self.template_name)
         

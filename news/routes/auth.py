@@ -10,22 +10,32 @@ class Login(View):
     template_name = 'news/login.html'
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('dashboard')
         return render(request, self.template_name)
     
     def post(self, request, *args, **kwargs):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # authenticate by username or email
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)  # ✅ this creates the session
-            print('Login successful')
-            messages.success(request, "Login successful!")
-            return redirect('dashboard')  # or wherever you want
-        else:
-            messages.error(request, "Invalid credentials")
-            return render(request, self.template_name)
+        if request.user.is_authenticated:
+            # Compare current logged-in user with submitted username
+            #print('Authenticated', request.user.username)
+            if request.user.username.lower() == request.POST.get('username', '').lower():
+                return redirect('dashboard')
+        try:
+            # authenticate by username or email
+            user = authenticate(request, username=username.lower(), password=password)
+            if user is not None:
+                login(request, user)  # ✅ this creates the session
+                #print('Login successful')
+                messages.success(request, "Login successful!")
+                return redirect('dashboard')  # or wherever you want
+            else:
+                messages.error(request, "Invalid credentials")
+                return render(request, self.template_name)
+        except Exception as e:
+            raise(e)
 
 class Subscribe(View):
     def post(self, request, *args, **kwargs):
@@ -41,7 +51,7 @@ class Subscribe(View):
                 )
 
                 subscriber.save()
-                print(email)
+                #print(email)
                 return JsonResponse({'success': f'{email} subscribed'}, status=200)
         
         except IntegrityError:

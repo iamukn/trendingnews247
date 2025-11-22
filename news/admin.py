@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Posts
+from .models import Posts, Subscribers, Viewers
 
+admin.site.register(Subscribers)
+admin.site.register(Viewers)
 
 @admin.register(Posts)
 class PostsAdmin(admin.ModelAdmin):

@@ -49,5 +49,5 @@ def resize_and_upload(file_obj,key, bucket='updates247'):
     key = f'news_photos/{key}'
     # 3. Upload to S3
     s3.upload_fileobj(buffer, bucket, key, ExtraArgs={'ContentType': f'{content_type}'})
-    print('Image uploaded successfully')
+    #print('Image uploaded successfully')
     return f"{ENDPOINT_URL}/{key}"

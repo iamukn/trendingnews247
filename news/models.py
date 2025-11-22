@@ -6,7 +6,8 @@ from django.utils.text import slugify
 class Posts(models.Model):
     header = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(null=False, blank=False)
-    slug = models.SlugField(unique=True, blank=False, null=False)
+    views = models.IntegerField(null=True, blank=True)
+    slug = models.SlugField(max_length=700, unique=True, blank=False, null=False)
     image_url = models.CharField(max_length=3000, null=True, blank=True)
     category = models.CharField(max_length=50, null=False, blank=False)
     author =  models.CharField(max_length=100, null=True, blank=True)

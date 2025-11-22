@@ -4,6 +4,22 @@
   Admin Dashboard
 {% endblock title %}
 
+{% block home %}
+ "https://updates247.ng"
+{% endblock home %}
+
+{% block categories %}
+"https://updates247.ng/categories/"
+{% endblock categories %}
+
+{% block aboutus %}
+"https://updates247.ng/about-us/"
+{% endblock aboutus %}
+
+{% block logo %}
+"https://updates247.ng"
+{% endblock logo %}
+
 {% block body %}
 <div class="mb-20"></div>
 <div class="min-h-screen flex items-center justify-center p-4 gap-6" style="background: var(--gradient-bg);">
@@ -19,7 +35,7 @@
             <form class="space-y-6" method="post" action="{% url 'post' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="space-y-2">
-                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="subject">Subject</label>
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="subject">Headline</label>
                     <input type="text" name="subject" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="subject" placeholder="Enter subject" required="" value="">
                 </div>
                 <div class="space-y-2">
@@ -48,7 +64,7 @@
                     <input type="text" name="reporter" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20" id="reporter" placeholder="Enter reporters name" value="">
                 </div>
                 <div class="space-y-2">
-                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="message_area">Message</label>
+                    <label class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium" for="message_area">Story</label>
                     <textarea name="message_area" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] resize-none transition-all focus:ring-2 focus:ring-primary/20" id="message" placeholder="Enter your message" required=""></textarea>
                 </div>
                 <div class="space-y-2">
