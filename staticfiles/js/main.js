@@ -99,7 +99,7 @@ const whatsapp = document.getElementById('whatsapp');
 const share = (platform) => {
   const currentURL = window.location.href;
   let title = currentURL.split('/')[3].split('-');
-
+/*
   let header = ''
   
   for (t = 0; t< title.length; t++) {
@@ -111,13 +111,14 @@ const share = (platform) => {
       header += ' '
     }
   }
-
+*/
+  const header = document.getElementById('headline').innerText
   if (platform === 'x') {
     window.open(`https://x.com/intent/tweet?text=${encodeURIComponent('Updates247: '+header+'.')}&url=${encodeURIComponent(currentURL)}`);
     return 
   } else if (platform === 'whatsapp') {
       window.open(
-  `https://api.whatsapp.com/send?text=${encodeURIComponent('Updates247: ' + header)}` +
+  `https://api.whatsapp.com/send?text=${encodeURIComponent('Updates247: ' + header + '.')}` +
   '%0A' + // new line
   encodeURIComponent(currentURL)
 );
