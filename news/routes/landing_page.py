@@ -10,5 +10,5 @@ class LandingPage(TemplateView):
         context = super().get_context_data(**kwargs)
         post = Posts.objects.all().order_by('-date_published')
         context["latest_news"] = post[0:3]
-        context['more_news'] = post[3: 20]
+        context['more_news'] = post[3: 13]
         return context

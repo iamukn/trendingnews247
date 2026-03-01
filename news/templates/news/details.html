@@ -7,6 +7,40 @@
   {{news.header|title}}
 {% endblock title %}
 
+{% block metaThumbnail %}
+    <meta property="og:title" content="{{news.header}}" />
+    <meta property="og:description" content="Trending news" />
+    <meta property="og:image" content="{{news.image_url}}"/> 
+    <meta property="og:url" content="https://updates247.ng/{{news.slug}}" />
+    <meta property="og:type" content="article" />
+{% endblock metaThumbnail %}
+{% block metaDesc %}
+    <meta name="description" content="{{news.header}}">
+{% endblock metaDesc %}
+{% block jsonLd %}
+   <script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "NewsArticle",
+	  "headline": "{{ news.header|escapejs }}",
+	  "description": "{{ news.header|escapejs }}",
+	  "image": "{{ news.image_url }}",
+	  "datePublished": "{{ news.date_published|date:'c' }}",
+	  "publisher": {
+	    "@type": "Organization",
+	    "name": "Updates247",
+	    "logo": {
+	      "@type": "ImageObject",
+	      "url": "https://updates247.ng/static/images/news.svg"
+	    }
+	  },
+	  "mainEntityOfPage": {
+	    "@type": "WebPage",
+	    "@id": "{{ request.build_absolute_uri }}"
+	  }
+	}
+    </script> 
+{% endblock jsonLd %}
 {% block body %}
 <section class="mb-5">
   <div class='w-full mt-20'>
