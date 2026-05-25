@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from news.models import Posts
+from django.core.cache import cache
 
 class SingleCategoryPage(View):
     template_name = 'news/single_category.html'
@@ -20,7 +21,12 @@ class SingleCategoryPage(View):
         category = category.strip().capitalize()
 
         # 3️⃣ Fetch posts safely (case-insensitive filtering)
-        posts = Posts.objects.filter(category__iexact=category)
+        all_posts = cache.get('all_articles')
+        if not all_posts:
+            all_posts = Posts.objects.all()
+            cache.set('all_articles', all_posts.order_by('-date_published'), timeout=60*60)  # Cache for 1 hour
+
+        posts = all_posts.filter(category__iexact=category)
 
         # 4️⃣ Handle case where no posts exist
         if not posts.exists():
