@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 # Create your models here.
@@ -24,6 +25,9 @@ class Posts(models.Model):
                 num += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("details", kwargs={"slug": self.slug})
 
 class Subscribers(models.Model):
     email = models.EmailField(null=True, blank=True, unique=True)
