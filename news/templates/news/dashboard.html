@@ -75,14 +75,14 @@
                         <div class="relative">
                             <input name="image" type="file" class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11 transition-all focus:ring-2 focus:ring-primary/20 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90" id="image" accept="image/*"></div>
                         </div>
-                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 w-full h-11 mt-8 shadow-sm hover:shadow-md transition-all" type="submit">Submit Message</button>
+                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-red-500 text-primary-foreground hover:bg-red-600 px-4 py-2 w-full h-11 mt-8 shadow-sm hover:shadow-md transition-all" type="submit">Submit Message</button>
                     </form>
                 </div>
             </div>
         </div>
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-green-400">{{ message }}</div>
+                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-green-600">{{ message }}</div>
                 {% endfor %}
             {% endif %}
 {% endblock body %}
