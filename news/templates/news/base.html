@@ -92,20 +92,87 @@
 </head>
 <body>
     <header class="mb-5">
-        <nav class="flex justify-between border-b fixed top-0 right-0 bg-white z-50 left-0 border-border px-4 py-7">
-		<a href={% block logo %}"{% url 'landing' %}"{% endblock logo %}>
-                <div class='flex gap-2'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-newspaper h-6 w-6 text-red-500 transition-transform group-hover:scale-110"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg>
-                        <h5 class="text-lg font-heading font-bold font-merriweather hover:cursor-pointer text-red-600">Updates247</h5>
-                </div>
-            </a>
-            <div></div>
-            <div class=''>
-                <ul class='flex gap-2'>
-			        <li class="font-body font-small transition-colors text-red-600 hover:cursor-pointer border border-red-600 p-1 px-2 rounded-xl hover:border-red-300"><a href={% block home %}"{% url 'landing' %}"{% endblock home %}>Home</a></li>
-                    <li class="font-body font-small transition-colors text-red-600 hover:cursor-pointer border border-red-600 p-1 px-2 rounded-xl hover:border-red-300"><a href={% block categories %}"{% url 'categories' %}"{% endblock categories %}> Categories</a></li>
-                    <li class="font-body font-small transition-colors text-red-600 hover:cursor-pointer border border-red-600 p-1 px-2 rounded-xl hover:border-red-300"><a href={% block aboutus %}"{% url 'aboutus' %}"{% endblock aboutus %}> About</a></li>
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+
+            <div class="flex items-center justify-between px-4 md:px-8 py-4">
+
+                <!-- Logo -->
+                <a href={% block logo %}"{% url 'landing' %}"{% endblock logo %}
+                class="flex items-center gap-2 group">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-red-500 transition-transform group-hover:scale-110">
+                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Z"></path>
+                    <path d="M18 14h-8"></path>
+                    <path d="M15 18h-5"></path>
+                    <path d="M10 6h8v4h-8V6Z"></path>
+                </svg>
+
+                <h5 class="text-lg font-bold text-red-600 font-merriweather">
+                    Updates247
+                </h5>
+                </a>
+
+                <!-- Desktop Nav -->
+                <ul class="hidden md:flex items-center gap-3">
+
+                <li>
+                    <a href={% url 'landing' %}
+                    class="px-4 py-2 text-sm font-medium rounded-xl border border-red-200 text-red-600 hover:bg-red-50 transition">
+                    Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href={% url 'categories' %}
+                    class="px-4 py-2 text-sm font-medium rounded-xl border border-red-200 text-red-600 hover:bg-red-50 transition">
+                    Categories
+                    </a>
+                </li>
+
+                <li>
+                    <a href={% url 'aboutus' %}
+                    class="px-4 py-2 text-sm font-medium rounded-xl border border-red-200 text-red-600 hover:bg-red-50 transition">
+                    About
+                    </a>
+                </li>
+
                 </ul>
+
+                <!-- Mobile Button -->
+                <button id="menuBtn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200">
+                ☰
+                </button>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+
+                <div class="flex flex-col gap-2">
+
+                <a href={% url 'landing' %}
+                    class="px-4 py-3 rounded-xl border border-red-200 text-red-600 hover:bg-red-50">
+                    Home
+                </a>
+
+                <a href={% url 'categories' %}
+                    class="px-4 py-3 rounded-xl border border-red-200 text-red-600 hover:bg-red-50">
+                    Categories
+                </a>
+
+                <a href={% url 'aboutus' %}
+                    class="px-4 py-3 rounded-xl border border-red-200 text-red-600 hover:bg-red-50">
+                    About
+                </a>
+
+                </div>
+
             </div>
         </nav>
     </header>
@@ -128,5 +195,13 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/main.js' %}"></script>
+    <script>
+        const btn = document.getElementById("menuBtn");
+        const menu = document.getElementById("mobileMenu");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
 </body>
 </html>
