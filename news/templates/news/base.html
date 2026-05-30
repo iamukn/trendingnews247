@@ -180,10 +180,13 @@
     {% endblock body %}
     <footer class="bg-secondary/50 border-t border-border py-12">
         <div class="flex flex-col justify-center items-center">
-            <div class='flex items-center justify-center mb-4 gap-2'>
+            <div class='flex flex-col items-center justify-center mb-4 gap-2'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-6 w-6 text-red-500"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                  <h2 class="text-2xl font-heading font-bold text-foreground">Stay Updated</h2>
-            </div>
+                {% block footerDesc %}
+                    <p1 class="text-muted-foreground text-sm px-10">Updates247, your trusted source for clean, clear, and compelling news stories from around the world. We believe that staying informed should be an enjoyable experience, not an overwhelming one.</p1>
+                {% endblock footerDesc %}
+                </div>
             <p class="text-muted-foreground mb-6 text-[1rem] text-center px-5">Get the latest news delivered to your inbox. Subscribe to our newsletter.</p>
             <form class="flex gap-3 max-w-md mx-auto"  id="myForm">
                 {% csrf_token %}
