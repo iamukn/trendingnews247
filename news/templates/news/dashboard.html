@@ -31,6 +31,11 @@
             </div>
             <p class="text-muted-foreground text-base pl-12">Fill in the details below to send your message</p>
         </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-red-600">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
         <div class="p-6 pt-0 pl-14 pr-6">
             <form class="space-y-6" method="post" action="{% url 'post' %}" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -80,9 +85,5 @@
                 </div>
             </div>
         </div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} text-center pb-2 text-green-600">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
+
 {% endblock body %}

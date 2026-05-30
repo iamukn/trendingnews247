@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from news.models import Posts
 from django.utils.text import slugify
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from news.utils.upload_to_r2 import resize_and_upload
 
 
@@ -62,9 +62,12 @@ class Post(View):
 
                 if avatar:
                     image_url = resize_and_upload(avatar.read(),image_key)
+
+        except IntegrityError as e:
+            messages.error(request, f"A story with the same headline already exists. Please choose a different headline.")
+            return render(request, self.template_name)
         except Exception as e:
             #print(e)
-            raise(e)
             messages.error(request, f"An error occurred while publishing: {e}")
             return render(request, self.template_name)
         
