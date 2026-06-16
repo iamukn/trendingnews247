@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render,  redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.cache import cache
 from news.models import Posts
 from django.utils.text import slugify
 from django.db import IntegrityError, transaction
@@ -45,9 +46,6 @@ class Post(View):
 
         try:
             # upload image to R2 instance
-
-            
-
             with transaction.atomic():
                 new_post = Posts(
                     header=header,
@@ -62,7 +60,11 @@ class Post(View):
 
                 if avatar:
                     image_url = resize_and_upload(avatar.read(),image_key)
-
+                messages.success(request, "Story Published Successfully ✅!")
+                # remove from cache
+                cache.delete('all_articles')
+                return render(request, self.template_name)
+    
         except IntegrityError as e:
             messages.error(request, f"A story with the same headline already exists. Please choose a different headline.")
             return render(request, self.template_name)
@@ -72,5 +74,4 @@ class Post(View):
             return render(request, self.template_name)
         
 
-        messages.success(request, "Story Published Successfully ✅!")
-        return render(request, self.template_name)
+
