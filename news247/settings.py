@@ -93,11 +93,14 @@ WSGI_APPLICATION = 'news247.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydb",
-        "USER": "eyen",
-        "PASSWORD": "password",
-        "HOST": os.environ.get('DB_HOST', 'localhost'),
+        "NAME": os.environ.get('DATABASE'),
+        "USER": os.environ.get('DB_USER'),
+        "PASSWORD": os.environ.get('DB_PASSWORD'),
+        "HOST": os.environ.get('DB_HOST'),
         "PORT": "5432",
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 
