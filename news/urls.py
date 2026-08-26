@@ -1,9 +1,7 @@
 from django.urls import path
 from .routes.landing_page import LandingPage
-from .routes.politics import PoliticsPage
-from .routes.judiciary import JudiciaryPage
-from .routes.health import HealthPage
 from .routes.categories import CategoriesPage
+from .routes.category import CategoryPage
 from .routes.details import DetailsPage
 from .routes.sport import SportPage
 from .routes.about import AboutUs
@@ -16,7 +14,8 @@ urlpatterns = [
     path('', LandingPage.as_view(), name='landing' ),
     path('about-us/', AboutUs.as_view(), name='aboutus' ),
     path('categories/', CategoriesPage.as_view(), name='categories' ),
-    path('category/', SingleCategoryPage.as_view(), name='category' ),
+    path('category/<str:category>/', CategoryPage.as_view(), name='category'),
+    # path('category/', SingleCategoryPage.as_view(), name='category' ),
     path('subscribe/', Subscribe.as_view(), name='subscribe' ),
     path('login/', Login.as_view(), name='login' ),
     path('dashboard/', Dashboard.as_view(), name='dashboard' ),

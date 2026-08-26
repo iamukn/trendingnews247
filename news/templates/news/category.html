@@ -1,0 +1,66 @@
+{% extends "news/base.html" %}
+{% block title %}
+Categories
+{% endblock title %}
+
+{% block body %}
+<section class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+
+  <!-- Header -->
+  <div class="mb-8 sm:mb-10">
+    <p class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-red-700 mb-2">
+      Explore
+    </p>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-[#0a0a0a] tracking-tight">
+      {{ category }}
+    </h1>
+    <p class="text-sm sm:text-base text-gray-600 mt-2">
+      Find stories organized the way you read them.
+    </p>
+  </div>
+
+  {% if posts %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {% for post in posts %}
+        <a href="{% url 'details' post.slug %}"
+           class="group flex flex-col overflow-hidden rounded-lg border border-gray-200 p-3 bg-white shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200">
+          <div class="overflow-hidden rounded-md bg-gray-100 aspect-video mb-3">
+            {% if post.image_url %}
+              <img src="{{ post.image_url }}" alt="{{ post.title }}"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            {% endif %}
+          </div>
+          <h2 class="text-base sm:text-lg font-bold text-[#0a0a0a] leading-snug group-hover:text-red-700 transition-colors line-clamp-2">
+            {{ post.title }}
+          </h2>
+          <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+            {{ post.excerpt }}
+          </p>
+        <div class="mt-3 pt-3 border-t border-gray-100">
+        <p class="text-sm font-semibold text-[#0a0a0a] leading-snug">
+            {{ post.header }}
+        </p>
+        <time datetime="{{ post.date_published|date:'Y-m-d' }}"
+                class="block text-xs text-gray-500 mt-1">
+            {{ post.date_published|date:"M j, Y" }}
+        </time>
+        </div>
+        </a>
+      {% endfor %}
+    </div>
+
+  {% else %}
+    <div class="text-center py-16 sm:py-24">
+      <p class="text-lg sm:text-xl font-bold text-[#0a0a0a]">
+        No stories in {{ category }} yet
+      </p>
+      <p class="text-sm text-gray-600 mt-2">
+        Check back soon, or browse other categories.
+      </p>
+      <a href="{% url 'categories' %}" class="inline-block mt-6 text-sm font-semibold text-red-700 hover:underline">
+        View all categories
+      </a>
+    </div>
+  {% endif %}
+</section>
+{% endblock body %}
