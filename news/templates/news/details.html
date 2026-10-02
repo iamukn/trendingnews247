@@ -2,17 +2,22 @@
 {% load static %}
 
 {% block titleStart %}
+  {{news.header|title}}
 {% endblock titleStart %}
 {% block title %}
-  {{news.header|title}}
+  | Updates247
 {% endblock title %}
 
+{% block metaKeywords %}
+  <meta name="keywords" content="{{news.header|title}}, {{news.category|title}}, Updates247, Nigeria news, trending stories, real-time updates, breaking news, in-depth analysis">
+{% endblock metaKeywords %}
+
 {% block metaThumbnail %}
-    <meta property="og:title" content="{{news.header}}" />
-    <meta property="og:description" content="Trending news" />
-    <meta property="og:image" content="{{news.image_url}}"/> 
-    <meta property="og:url" content="https://updates247.ng/{{news.slug}}" />
-    <meta property="og:type" content="article" />
+  <meta property="og:image" content="{{news.image_url}}"/>
+  <meta property="og:title" content="{{news.header|title}} | Updates247" />
+  <meta property="og:description" content="{{news.header|title}} | Updates247" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://updates247.ng/{{news.slug}}" />
 {% endblock metaThumbnail %}
 {% block metaDesc %}
     <meta name="description" content="{{news.header}}">
@@ -45,7 +50,7 @@
 <section class="mb-5">
   <div class='w-full mt-20'>
     <div class="relative h-[400px] md:h-[500px] overflow-hidden">
-      <img src={{news.image_url}} alt="Tech Giants Unveil Next-Gen Smartphones with Revolutionary Features" class="w-full h-full object-cover">
+      <img src="{{news.image_url}}" alt="{{news.header}}" class="w-full h-full object-cover">
     </div>
     <article class="container mx-auto px-4 py-12 max-w-4xl">
       <header class="mb-8">
@@ -80,7 +85,7 @@
                     <article class="group bg-card border border-gray-200 shadow-md shadow-blue-300/30 rounded-lg overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300">
                       <a href="{% url 'details' news_related.slug %}">
                         <div class="aspect-video overflow-hidden">
-                          <img src={{news_related.image_url}} alt={{news_related.header}} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                          <img src="{{news_related.image_url}}" alt="{{news_related.header}}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="p-5">
                           <div class="mb-2">
